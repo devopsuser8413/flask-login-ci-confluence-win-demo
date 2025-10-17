@@ -67,7 +67,7 @@ A complete step-by-step guide to set up Java, Python, Jenkins, and a Jenkins CI/
 ### 🧭 GitHub Credentials
 | Field | Value |
 |-------|--------|
-| **ID** | `github-credentials` |
+| **ID** | `github-credentials-demo` |
 | **Username** | `xxxxxxxxx1234@gmail.com` |
 | **Password / Token** | `xxxxxxxxxxxxxxxxxxxxxxxxxxx` |
 
@@ -76,18 +76,18 @@ A complete step-by-step guide to set up Java, Python, Jenkins, and a Jenkins CI/
 ### ✉️ SMTP (Email) Credentials
 | Credential ID | Description | Secret |
 |----------------|--------------|---------|
-| `smtp-host` | SMTP server host | `smtp.gmail.com` |
-| `smtp-user` | SMTP sender email | `xxxxxxxxxx@gmail.com` |
-| `smtp-pass` | SMTP password or app password | `xxxxxxxxxxxx` |
+| `smtp-host-demo` | SMTP server host | `smtp.gmail.com` |
+| `smtp-user-demo` | SMTP sender email | `xxxxxxxxxx@gmail.com` |
+| `smtp-pass-demo` | SMTP password or app password | `xxxxxxxxxxxx` |
 
 ---
 
 ### 📘 Confluence Credentials
 | Credential ID | Description | Secret |
 |----------------|-------------|---------|
-| `confluence-user` | Confluence username | `xxxxxxxxxx@gmail.com` |
-| `confluence-token` | API token | `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
-| `confluence-base` | Base URL | `https://xxxxxxxxxxxxxxx.atlassian.net/wiki` |
+| `confluence-user-demo` | Confluence username | `xxxxxxxxxx@gmail.com` |
+| `confluence-token-demo` | API token | `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
+| `confluence-base-demo` | Base URL | `https://xxxxxxxxxxxxxxx.atlassian.net/wiki` |
 
 ---
 
