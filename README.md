@@ -26,18 +26,17 @@ A complete step-by-step guide to set up Java, Python, Jenkins, and a Jenkins CI/
    - **Variable value:** `C:\Program Files\Java\jdk-17`  
 4. Click **OK**, then edit the **Path** variable → click **New**, and add:  
 %JAVA_HOME%\bin
-
-r
-Copy code
 5. Click **OK** on all dialogs to save and apply changes.
 
 ##### Option B — Using PowerShell (Admin)
 
 Run the following commands in an **Administrator PowerShell** window:
 ```powershell
-setx JAVA_HOME "C:\Program Files\Java\jdk-17" /M
-setx PATH "%PATH%;%JAVA_HOME%\bin" /M
+setx JAVA_HOME "C:\Program Files\Java\jdk-17"
+setx PATH "%PATH%;%JAVA_HOME%\bin"
+
 ✅ Verify
+
 Run the following commands to confirm setup:
 
    ```bash
