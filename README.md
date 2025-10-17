@@ -14,122 +14,120 @@ A complete step-by-step guide to set up Java, Python, Jenkins, and a Jenkins CI/
 3. **Verify installation:**
    ```bash
    java -version
-Set JAVA_HOME in environment variables.
+   ```
+4. **Set `JAVA_HOME`** in environment variables.
 
-🐍 1.2 Install Python
-Download Python 3.x:
-🔗 https://www.python.org/downloads/
+---
 
-During installation, select ✅ “Add Python to PATH”.
+### 🐍 1.2 Install Python
 
-Verify installation:
+1. **Download Python 3.x:**  
+   🔗 [https://www.python.org/downloads/](https://www.python.org/downloads/)
+2. During installation, select ✅ **“Add Python to PATH”**.
+3. **Verify installation:**
+   ```bash
+   python --version
+   ```
 
-bash
-Copy code
-python --version
-🧰 1.3 Install Jenkins
-Download Jenkins LTS:
-🔗 https://www.jenkins.io/download/
+---
 
-Run Jenkins as a Windows service or via command line.
+### 🧰 1.3 Install Jenkins
 
-Access Jenkins UI at:
-👉 http://localhost:8080
+1. **Download Jenkins LTS:**  
+   🔗 [https://www.jenkins.io/download/](https://www.jenkins.io/download/)
+2. Run Jenkins as a **Windows service** or via **command line**.
+3. Access Jenkins UI at:  
+   👉 [http://localhost:8080](http://localhost:8080)
+4. Unlock Jenkins using:
+   ```
+   C:\ProgramData\Jenkins\.jenkins\secrets\initialAdminPassword
+   ```
 
-Unlock Jenkins using:
+---
 
-makefile
-Copy code
-C:\ProgramData\Jenkins\.jenkins\secrets\initialAdminPassword
-⚙️ 2. Jenkins UI and Plugin Setup
-Login to Jenkins UI.
+## ⚙️ 2. Jenkins UI and Plugin Setup
 
-Navigate to Manage Jenkins → Manage Plugins.
+1. Login to **Jenkins UI**.
+2. Navigate to **Manage Jenkins → Manage Plugins**.
+3. **Install the following plugins:**
+   - 🔹 GitHub Plugin  
+   - 🔹 Email Extension Plugin  
+   - 🔹 Pipeline Plugin  
+   - 🔹 Python Plugin  
+   - 🔹 Confluence Publisher Plugin
+4. Restart Jenkins after installation.
 
-Install the following plugins:
+---
 
-🔹 GitHub Plugin
+## 🔑 3. Jenkins Credentials Setup
 
-🔹 Email Extension Plugin
+1. Go to **Manage Jenkins → Credentials → Global credentials**.
+2. Add the following credentials:
 
-🔹 Pipeline Plugin
+### 🧭 GitHub Credentials
+| Field | Value |
+|-------|--------|
+| **ID** | `github-credentials` |
+| **Username** | `xxxxxxxxx1234@gmail.com` |
+| **Password / Token** | `xxxxxxxxxxxxxxxxxxxxxxxxxxx` |
 
-🔹 Python Plugin
+---
 
-🔹 Confluence Publisher Plugin
+### ✉️ SMTP (Email) Credentials
+| Credential ID | Description | Secret |
+|----------------|--------------|---------|
+| `smtp-host` | SMTP server host | `smtp.gmail.com` |
+| `smtp-user` | SMTP sender email | `xxxxxxxxxx@gmail.com` |
+| `smtp-pass` | SMTP password or app password | `xxxxxxxxxxxx` |
 
-Restart Jenkins after installation.
+---
 
-🔑 3. Jenkins Credentials Setup
-Go to Manage Jenkins → Credentials → Global credentials.
+### 📘 Confluence Credentials
+| Credential ID | Description | Secret |
+|----------------|-------------|---------|
+| `confluence-user` | Confluence username | `xxxxxxxxxx@gmail.com` |
+| `confluence-token` | API token | `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
+| `confluence-base` | Base URL | `https://xxxxxxxxxxxxxxx.atlassian.net/wiki` |
 
-Add the following credentials:
+---
 
-🧭 GitHub Credentials
-Field	Value
-ID	github-credentials
-Username	xxxxxxxxx1234@gmail.com
-Password / Token	xxxxxxxxxxxxxxxxxxxxxxxxxxx
+## 🔐 4. Generate API Tokens
 
-✉️ SMTP (Email) Credentials
-Credential ID	Description	Secret
-smtp-host	SMTP server host	smtp.gmail.com
-smtp-user	SMTP sender email	xxxxxxxxxx@gmail.com
-smtp-pass	SMTP password or app password	xxxxxxxxxxxx
+### 🧭 4.1 GitHub Personal Access Token
 
-📘 Confluence Credentials
-Credential ID	Description	Secret
-confluence-user	Confluence username	xxxxxxxxxx@gmail.com
-confluence-token	API token	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-confluence-base	Base URL	https://xxxxxxxxxxxxxxx.atlassian.net/wiki
+1. Login to **GitHub**.  
+2. Navigate to **Settings → Developer Settings → Personal Access Tokens → Tokens (classic)**.  
+3. Click **Generate new token**, set:
+   - Expiration date  
+   - Permissions: `repo`, `workflow`  
+4. Copy and store the token securely.
 
-🔐 4. Generate API Tokens
-🧭 4.1 GitHub Personal Access Token
-Login to GitHub.
+---
 
-Navigate to Settings → Developer Settings → Personal Access Tokens → Tokens (classic).
+### 📘 4.2 Confluence API Token
 
-Click Generate new token, set:
+1. Login to Atlassian account:  
+   🔗 [https://id.atlassian.com/manage/api-tokens](https://id.atlassian.com/manage/api-tokens)
+2. Click **“Create API Token”**.  
+3. Label it (e.g., `Jenkins-Confluence`).  
+4. Copy and store the token securely.
 
-Expiration date
+---
 
-Permissions: repo, workflow
+## 🧾 5. Jenkinsfile Script Creation
 
-Copy and store the token securely.
-
-📘 4.2 Confluence API Token
-Login to Atlassian account:
-🔗 https://id.atlassian.com/manage/api-tokens
-
-Click “Create API Token”.
-
-Label it (e.g., Jenkins-Confluence).
-
-Copy and store the token securely.
-
-🧾 5. Jenkinsfile Script Creation
-In your GitHub repository, create a file named Jenkinsfile.
-
-Define the following pipeline stages:
-
-🧩 Checkout code from GitHub
-
-🐍 Install Python dependencies
-
-⚙️ Create virtual environment
-
-🧪 Run tests (e.g., Pytest/Selenium)
-
-📄 Generate HTML report
-
-✉️ Send report via email
-
-📘 Publish report to Confluence
+1. In your GitHub repository, create a file named **`Jenkinsfile`**.
+2. Define the following **pipeline stages**:
+   - 🧩 Checkout code from GitHub  
+   - 🐍 Install Python dependencies  
+   - ⚙️ Create virtual environment  
+   - 🧪 Run tests (e.g., Pytest/Selenium)  
+   - 📄 Generate HTML report  
+   - ✉️ Send report via email  
+   - 📘 Publish report to Confluence  
 
 Example:
-
-groovy
-Copy code
+```groovy
 pipeline {
     agent any
 
@@ -162,36 +160,46 @@ pipeline {
         }
     }
 }
-📁 6. Pipeline Dependency Files
-Ensure these files are added in your repository root:
+```
 
-Copy code
+---
+
+## 📁 6. Pipeline Dependency Files
+
+Ensure these files are added in your **repository root**:
+
+```
 requirements.txt
 check_api_token.py
 publish_to_confluence.py
 send_report_email.py
-🔄 7. CI/CD Pipeline Workflow
-Developer pushes code to GitHub.
+```
 
-Jenkins automatically triggers the build.
+---
 
-The pipeline executes:
+## 🔄 7. CI/CD Pipeline Workflow
 
-✅ Checkout code
+1. Developer **pushes code** to GitHub.  
+2. Jenkins **automatically triggers** the build.  
+3. The pipeline executes:
+   - ✅ Checkout code  
+   - ✅ Install dependencies  
+   - ✅ Run test suite  
+   - ✅ Generate HTML test report  
+   - ✅ Send email notification  
+   - ✅ Publish results to Confluence  
+4. Jenkins marks the build as:
+   - 🟢 **SUCCESS** — All tests passed  
+   - 🔴 **FAILURE** — Tests failed or publish error  
 
-✅ Install dependencies
+---
 
-✅ Run test suite
+## 🏁 End of Guide
 
-✅ Generate HTML test report
+> 💡 **Tip:** You can extend this setup to include static code analysis, Docker builds, and deployment steps for full CI/CD automation.
 
-✅ Send email notification
+---
 
-✅ Publish results to Confluence
-
-Jenkins marks the build as:
-
-🟢 SUCCESS — All tests passed
-
-🔴 FAILURE — Tests failed or publish error
-
+📧 **Maintainer:** [Your Name]  
+💼 **Team / Department:** [Your Department Name]  
+🏢 **Organization:** [Your Company Name]
